@@ -1,0 +1,319 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.udacity.security.service.SecurityService",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_580701155 { 
+   	label=udacity
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_165181967 { 
+   	label=security
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   CatpointGui1083667936[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CatpointGui</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   controlPanel: ControlPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   displayPanel: DisplayPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   imagePanel: ImagePanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   imageService: FakeImageService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   securityRepository: SecurityRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   securityService: SecurityService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sensorPanel: SensorPanel [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ControlPanel1083667936[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ControlPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   buttonMap: Map&lt;ArmingStatus, JButton&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   securityService: SecurityService [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+DisplayPanel1083667936[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)DisplayPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   currentStatusLabel: JLabel [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ catDetected(catDetected: boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ notify(status: AlarmStatus)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sensorStatusChanged()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ImagePanel1083667936[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ImagePanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   IMAGE_HEIGHT: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   IMAGE_WIDTH: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cameraHeader: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cameraLabel: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   currentCameraImage: BufferedImage [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   securityService: SecurityService [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ catDetected(catDetected: boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ notify(status: AlarmStatus)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sensorStatusChanged()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PretendDatabaseSecurityRepositoryImpl2093271846[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PretendDatabaseSecurityRepositoryImpl</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   alarmStatus: AlarmStatus [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   armingStatus: ArmingStatus [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sensors: Set&lt;Sensor&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addSensor(sensor: Sensor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeSensor(sensor: Sensor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateSensor(sensor: Sensor)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SecurityService1490340987[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SecurityService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   imageService: ImageService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   securityRepository: SecurityRepository [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   statusListeners: Set&lt;StatusListener&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addSensor(sensor: Sensor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addStatusListener(statusListener: StatusListener)</TD></TR>
+<TR><TD ALIGN="LEFT" >- catDetected(cat: Boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ changeSensorActivationStatus(sensor: Sensor, active: Boolean)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ checkSensors()</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleSensorActivated()</TD></TR>
+<TR><TD ALIGN="LEFT" >- handleSensorDeactivated()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ processImage(currentCameraImage: BufferedImage)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeSensor(sensor: Sensor)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeStatusListener(statusListener: StatusListener)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resetSensors()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Sensor2093271846[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Sensor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   active: Boolean [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sensorId: UUID [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sensorType: SensorType [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ compareTo(o: Sensor): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SensorPanel1083667936[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SensorPanel</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   addNewSensorButton: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   newSensorName: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   newSensorNameField: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   newSensorPanel: JPanel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   newSensorType: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   newSensorTypeDropdown: JComboBox [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   panelLabel: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   securityService: SecurityService [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sensorListPanel: JPanel [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >- addSensor(sensor: Sensor)</TD></TR>
+<TR><TD ALIGN="LEFT" >- buildAddSensorPanel(): JPanel</TD></TR>
+<TR><TD ALIGN="LEFT" >- removeSensor(sensor: Sensor)</TD></TR>
+<TR><TD ALIGN="LEFT" >- updateSensorList(p: JPanel)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_498761802 { 
+   	label=image
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   AwsImageService507310180[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AwsImageService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   log: Logger [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ imageContainsCat(image: BufferedImage, confidenceThreshhold: float): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- logLabelsForFun(response: DetectLabelsResponse)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+FakeImageService507310180[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FakeImageService</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   r: Random [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ imageContainsCat(image: BufferedImage, confidenceThreshhold: float): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+CatpointGui1083667936 -> ControlPanel1083667936[label="controlPanel
+[0..1]"];
+CatpointGui1083667936 -> DisplayPanel1083667936[label="displayPanel
+[0..1]"];
+CatpointGui1083667936 -> ImagePanel1083667936[label="imagePanel
+[0..1]"];
+CatpointGui1083667936 -> SecurityService1490340987[label="securityService
+[0..1]"];
+CatpointGui1083667936 -> SensorPanel1083667936[label="sensorPanel
+[0..1]"];
+ControlPanel1083667936 -> SecurityService1490340987[label="securityService
+[0..1]"];
+ImagePanel1083667936 -> DisplayPanel1083667936[arrowhead=none];
+ImagePanel1083667936 -> SecurityService1490340987[label="securityService
+[0..1]"];
+PretendDatabaseSecurityRepositoryImpl2093271846 -> Sensor2093271846[label="sensors
+[0..*]"];
+SecurityService1490340987 -> AwsImageService507310180[arrowhead=none];
+SecurityService1490340987 -> DisplayPanel1083667936[arrowhead=none];
+SecurityService1490340987 -> FakeImageService507310180[arrowhead=none];
+SecurityService1490340987 -> ImagePanel1083667936[arrowhead=none];
+SecurityService1490340987 -> ImagePanel1083667936[label="statusListeners
+[0..*]", arrowhead=none];
+SecurityService1490340987 -> PretendDatabaseSecurityRepositoryImpl2093271846[arrowhead=none];
+SensorPanel1083667936 -> SecurityService1490340987[label="securityService
+[0..1]"];
+    
+}
+@enduml
